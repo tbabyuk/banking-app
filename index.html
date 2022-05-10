@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+      <div class="logo"></div>
+      <div class="login-wrapper">
+        <form>
+          <input type="text" class="login-username" placeholder="username" />
+          <input type="text" class="login-password" placeholder="password" />
+          <button id="btn-login">
+            <i class="fa-solid fa-right-to-bracket"></i> Log In
+          </button>
+        </form>
+      </div>
+      <div class="welcome-message">
+        
+      </div>
+    </div>
+    <div class="main-wrapper">
+      <div class="account-details-window">
+        <h2>Account Details:</h2>
+      </div>
+      <div class="services-window">
+        <h2>Services:</h2>
+        <div class="services-wrapper">
+          <!-- transfer money -->
+          <form class="services transfer">
+            <h3>Transfer Money:</h3>
+            <div class="form-group">
+              <small>Transfer to:</small>
+              <input type="text" id="transfer-to" />
+            </div>
+            <div class="form-group">
+              <small>Transfer amount:</small>
+              <input type="text" id="transfer-amount" />
+            </div>
+            <div class="form-group">
+              <input type="submit" value="Go" />
+            </div>
+          </form>
+          <!-- request a loan -->
+          <form class="services loan">
+            <h3>Request a loan:</h3>
+            <div class="form-group">
+              <small>Loan Amount:</small>
+              <input type="text" id="transfer-to" />
+            </div>
+            <div class="form-group">
+              <small>Loan Status:</small>
+              <input type="text" id="transfer-amount" />
+            </div>
+            <div class="form-group">
+              <input type="submit" value="Go" />
+            </div>
+          </form>
+          <!-- close account -->
+          <form class="services close">
+            <h3>Close Account:</h3>
+            <div class="form-group">
+              <small>Confirm Username</small>
+              <input type="text" id="transfer-to" />
+            </div>
+            <div class="form-group">
+              <small>Confirm Password:</small>
+              <input type="text" id="transfer-amount" />
+            </div>
+            <div class="form-group">
+              <input type="submit" value="Go" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

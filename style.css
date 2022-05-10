@@ -1,0 +1,124 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.wrapper {
+  height: 100vh;
+}
+
+.header {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #539d8b;
+}
+
+.logo {
+  width: 20%;
+  height: 100%;
+  background: url('./img/ubank-logo.png') no-repeat center;
+  background-size: 100%;
+}
+
+.login-wrapper {
+  width: 60%;
+}
+
+
+.login-wrapper form {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.login-wrapper input, button {
+  height: 40px;
+  padding: 10px;
+  font-size: large;
+  border: 2px solid #b1b1b1;
+  border-radius: 8px;
+}
+
+.welcome-message {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+.main-wrapper {
+  visibility: hidden;
+  height: 80%;
+  margin: 30px 40px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.account-details-window {
+  background-color: #ece9e9;
+  border-radius: 10px;
+  width: 55%;
+  padding: 30px;
+}
+
+.services-window {
+  background-color: #ece9e9;
+  border-radius: 10px;
+  width: 30%;
+  padding: 30px;
+}
+
+.account-details-window h2,
+.services-window h2 {
+  color: #333;
+  border-bottom: 2px solid #333;
+  margin-bottom: 20px;
+}
+
+.services-wrapper {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.services {
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-bottom: 1px dashed #333;
+}
+
+.services:last-child {
+  border: none;
+}
+
+
+.services input {
+  height: 25px;
+  border-radius: 8px;
+  border: none;
+}
+
+
+.username,
+.password {
+  margin-right: 50px;
+}
+
+
+#btn-login {
+  background-color: #733434;
+  color: #F2EDD0;
+}
+
+#btn-login:hover {
+  cursor: pointer;
+}
