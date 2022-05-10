@@ -60,12 +60,27 @@
   justify-content: space-evenly;
 }
 
+
+/* ACCOUNT DETAILS */
 .account-details-window {
   background-color: #ece9e9;
   border-radius: 10px;
   width: 55%;
   padding: 30px;
 }
+
+.account-details-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.account-details-header p {
+  padding-right: 50px;
+}
+
+
+
+/* SERVICES */
 
 .services-window {
   background-color: #ece9e9;
