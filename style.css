@@ -27,7 +27,6 @@
   width: 60%;
 }
 
-
 .login-wrapper form {
   height: 100%;
   display: flex;
@@ -35,7 +34,8 @@
   justify-content: space-evenly;
 }
 
-.login-wrapper input, button {
+.login-wrapper input,
+button {
   height: 40px;
   padding: 10px;
   font-size: large;
@@ -53,13 +53,13 @@
 }
 
 .main-wrapper {
-  visibility: hidden;
+  opacity: 0;
   height: 80%;
   margin: 30px 40px;
   display: flex;
   justify-content: space-evenly;
+  transition: all 1.5s;
 }
-
 
 /* ACCOUNT DETAILS */
 .account-details-window {
@@ -78,7 +78,35 @@
   padding-right: 50px;
 }
 
+/* Transaction Styling */
 
+.transaction-single {
+  background-color: #f8f8f8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding: 0px 30px;
+  margin-bottom: 5px;
+}
+
+.transaction-type-deposit {
+  background-color: rgb(114, 230, 96);
+  color: #f8f8f8;
+  padding: 5px 15px;
+  border-radius: 10px;
+}
+
+.transaction-type-withdrawal {
+  background-color: rgb(247, 104, 75);
+  color: #f8f8f8;
+  padding: 5px 15px;
+  border-radius: 10px;
+}
+
+/* .transaction-amount {
+
+} */
 
 /* SERVICES */
 
@@ -115,25 +143,24 @@
   border: none;
 }
 
-
 .services input {
   height: 25px;
   border-radius: 8px;
   border: none;
 }
 
-
 .username,
 .password {
   margin-right: 50px;
 }
 
-
-#btn-login {
+#btn-login,
+#btn-logout {
   background-color: #733434;
-  color: #F2EDD0;
+  color: #f2edd0;
 }
 
-#btn-login:hover {
+#btn-login:hover,
+#btn-logout:hover {
   cursor: pointer;
 }
