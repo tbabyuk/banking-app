@@ -5,15 +5,12 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.wrapper {
-  height: 100vh;
-}
-
 .header {
   height: 80px;
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px solid #539d8b;
+  border-bottom: 2px solid #b1b1b1;
+  margin-bottom: 50px;
 }
 
 .logo {
@@ -21,6 +18,7 @@
   height: 100%;
   background: url('./img/ubank-logo.png') no-repeat center;
   background-size: 100%;
+  cursor: pointer;
 }
 
 .login-wrapper {
@@ -53,9 +51,8 @@ button {
 }
 
 .main-wrapper {
-  opacity: 0;
+  opacity: 1;
   height: 80%;
-  margin: 30px 40px;
   display: flex;
   justify-content: space-evenly;
   transition: all 1.5s;
@@ -65,7 +62,7 @@ button {
 .account-details-window {
   background-color: #ece9e9;
   border-radius: 10px;
-  width: 55%;
+  width: 45%;
   padding: 30px;
 }
 
@@ -75,13 +72,32 @@ button {
   margin-bottom: 40px;
 }
 
-/* .account-details-header p {
-  padding-right: 50px;
-} */
-
 .current-balance-container {
   display: flex;
   align-items: flex-end;
+}
+
+.account-details-summary {
+  background-color: #f8f8f8;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 5px;
+  height: 50px;
+}
+
+.account-details-summary p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.deposits-total {
+  color:rgb(114, 230, 96);
+}
+
+.withdrawals-total {
+  color:rgb(247, 104, 75);
 }
 
 /* Transaction Styling */
@@ -110,9 +126,6 @@ button {
   border-radius: 10px;
 }
 
-/* .transaction-amount {
-
-} */
 
 /* SERVICES */
 
@@ -121,6 +134,7 @@ button {
   border-radius: 10px;
   width: 30%;
   padding: 30px;
+  max-height: 500px;
 }
 
 .account-details-window h2,

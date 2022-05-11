@@ -1,12 +1,15 @@
 console.log('hello world!');
 
+const logoDiv = document.querySelector(".logo");
 const btnLogin = document.querySelector('#btn-login');
 const btnLogout = document.querySelector('#btn-logout');
 const mainWrapper = document.querySelector('.main-wrapper');
 const loginUsername = document.querySelector('.login-username');
 const loginPassword = document.querySelector('.login-password');
 const welcomeMessage = document.querySelector('.welcome-message');
-const showBalance = document.querySelector('.balance'); //account balance field
+const showBalance = document.querySelector('.balance');
+const showDeposits = document.querySelector(".deposits-total");
+const showWithdrawals = document.querySelector(".withdrawals-total");
 const accountDetailsBody = document.querySelector('.account-details-body');
 const currentDate = document.querySelector(".current-date");
 
@@ -45,14 +48,21 @@ btnLogin.addEventListener('click', (e) => {
     //display balance
     calcBalance(currAccount);
 
+    //display deposits and withdrawals totals
+    calcDepositsWithdrawals(currAccount);
+
     //show transactions
     showTransactions(currAccount);
   }
 });
 
+//CLICKING ON LOGO
+logoDiv.addEventListener('click', () => {
+  mainWrapper.style.opacity = 0;
+});
 
-//USER LOGGING OUT
 
+//LOGGING OUT BUTTON
 btnLogout.addEventListener('click', () => {
   mainWrapper.style.opacity = 0;
 });
@@ -104,13 +114,28 @@ function welcomeUser(account) {
   loginPassword.blur();
 }
 
-//Calc Current Balance
+//Calc Balance
 function calcBalance(account) {
   const sum = account.transactions.reduce((acc, trans) => {
     return acc + trans;
   });
 
   showBalance.innerText = `$${sum}`;
+}
+
+//Calculate deposits and withdrawals
+
+function calcDepositsWithdrawals(account) {
+  const deposits = account.transactions.filter(trans => trans > 0)
+  .reduce((acc, trans) => acc + trans);
+
+  const withdrawals = account.transactions.filter(trans => trans < 0)
+  .reduce((acc, trans) => acc + trans);
+
+  showDeposits.innerText = `$${deposits}`;
+
+  showWithdrawals.innerText = `$${Math.abs(withdrawals)}`;
+
 }
 
 //Display Transactions
