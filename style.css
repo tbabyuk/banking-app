@@ -72,10 +72,16 @@ button {
 .account-details-header {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 40px;
 }
 
-.account-details-header p {
+/* .account-details-header p {
   padding-right: 50px;
+} */
+
+.current-balance-container {
+  display: flex;
+  align-items: flex-end;
 }
 
 /* Transaction Styling */
@@ -120,8 +126,12 @@ button {
 .account-details-window h2,
 .services-window h2 {
   color: #333;
-  border-bottom: 2px solid #333;
-  margin-bottom: 20px;
+  /* border-bottom: 2px solid #333; */
+  /* margin-bottom: 50px; */
+}
+
+.current-date {
+  font-style: italic;
 }
 
 .services-wrapper {

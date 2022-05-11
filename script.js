@@ -8,8 +8,21 @@ const loginPassword = document.querySelector('.login-password');
 const welcomeMessage = document.querySelector('.welcome-message');
 const showBalance = document.querySelector('.balance'); //account balance field
 const accountDetailsBody = document.querySelector('.account-details-body');
+const currentDate = document.querySelector(".current-date");
 
 loginUsername.focus();
+
+//DETERMINE AND DISPLAY CURRENT DATE AND TIME
+let currDate = new Date();
+let locale = navigator.language;
+
+let formattedDate = currDate.toLocaleDateString(locale, {weekday: "long", month: "long", day: "numeric", year: "numeric", hour: "numeric", minute: "numeric"})
+
+currentDate.innerText = formattedDate;
+
+
+
+let currAccount;
 
 //USER LOGGING IN
 btnLogin.addEventListener('click', (e) => {
@@ -17,49 +30,26 @@ btnLogin.addEventListener('click', (e) => {
   const userName = loginUsername.value.trim().toLowerCase();
   const password = loginPassword.value.trim();
 
-  //ACCOUNT 1
-  if (userName === 'hlecter' && password === '111') {
+//Locate correct user account
+
+  currAccount = accounts.find(acc => acc.username === userName);
+
+  if(currAccount.password === +password) {
+
+    //display UI
     mainWrapper.style.opacity = 1;
 
     //display welcome message
-    welcomeUser(account1);
+    welcomeUser(currAccount);
 
     //display balance
-    calcBalance(account1);
+    calcBalance(currAccount);
 
     //show transactions
-    showTransactions(account1);
-
-    //ACCOUNT 2
-  } else if (userName === 'lorgana' && password === '222') {
-    mainWrapper.style.opacity = 1;
-
-    //display welcome message
-    welcomeUser(account2);
-
-    //display balance
-    calcBalance(account2);
-
-    //show transactions
-    showTransactions(account2);
-
-    //ACCOUNT 3
-  } else if (userName === 'gorwell' && password === '333') {
-    mainWrapper.style.opacity = 1;
-
-    //display welcome message
-    welcomeUser(account3);
-
-    //display balance
-    calcBalance(account3);
-
-    //show transactions
-    showTransactions(account3);
-
-  } else {
-    loginUsername.focus();
+    showTransactions(currAccount);
   }
 });
+
 
 //USER LOGGING OUT
 
@@ -96,6 +86,9 @@ const account3 = {
   password: 333,
 };
 
+
+const accounts = [account1, account2, account3];
+
 // =======================================================================================================
 
 //ACCOUNT DETAILS OPERATIONS
@@ -117,19 +110,24 @@ function calcBalance(account) {
     return acc + trans;
   });
 
-  showBalance.innerText = sum;
+  showBalance.innerText = `$${sum}`;
 }
 
 //Display Transactions
 
 function showTransactions(account) {
+
+  accountDetailsBody.innerHTML = "";
+
   account.transactions.forEach((trans) => {
     const type = trans > 0 ? 'deposit' : 'withdrawal';
+
+    const transFormatted = trans < 0 ? trans.toString().replaceAll("-", "-$") : "$" + trans.toString();
 
     const html = `
     <div class="transaction-single">
     <div class="transaction-type-${type}">${type}</div>
-    <div class="transaction-amount">${trans}</div>
+    <div class="transaction-amount">${transFormatted}</div>
     </div>    
     `;
     accountDetailsBody.insertAdjacentHTML('afterbegin', html);
