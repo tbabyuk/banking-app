@@ -1,6 +1,6 @@
 console.log('hello world!');
 
-const logoDiv = document.querySelector(".logo");
+const logoDiv = document.querySelector('.logo');
 const btnLogin = document.querySelector('#btn-login');
 const btnLogout = document.querySelector('#btn-logout');
 const mainWrapper = document.querySelector('.main-wrapper');
@@ -8,10 +8,15 @@ const loginUsername = document.querySelector('.login-username');
 const loginPassword = document.querySelector('.login-password');
 const welcomeMessage = document.querySelector('.welcome-message');
 const showBalance = document.querySelector('.balance');
-const showDeposits = document.querySelector(".deposits-total");
-const showWithdrawals = document.querySelector(".withdrawals-total");
+const showDeposits = document.querySelector('.deposits-total');
+const showWithdrawals = document.querySelector('.withdrawals-total');
 const accountDetailsBody = document.querySelector('.account-details-body');
-const currentDate = document.querySelector(".current-date");
+const currentDate = document.querySelector('.current-date');
+
+//Transfers
+const inputTransferTo = document.getElementById('transfer-to');
+const inputTransferAmount = document.getElementById('transfer-amount');
+const transferBtn = document.getElementById('transfer-btn');
 
 loginUsername.focus();
 
@@ -19,53 +24,18 @@ loginUsername.focus();
 let currDate = new Date();
 let locale = navigator.language;
 
-let formattedDate = currDate.toLocaleDateString(locale, {weekday: "long", month: "long", day: "numeric", year: "numeric", hour: "numeric", minute: "numeric"})
+let formattedDate = currDate.toLocaleDateString(locale, {
+  weekday: 'long',
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+  hour: 'numeric',
+  minute: 'numeric',
+});
 
 currentDate.innerText = formattedDate;
 
-
-
 let currAccount;
-
-//USER LOGGING IN
-btnLogin.addEventListener('click', (e) => {
-  e.preventDefault();
-  const userName = loginUsername.value.trim().toLowerCase();
-  const password = loginPassword.value.trim();
-
-//Locate correct user account
-
-  currAccount = accounts.find(acc => acc.username === userName);
-
-  if(currAccount.password === +password) {
-
-    //display UI
-    mainWrapper.style.opacity = 1;
-
-    //display welcome message
-    welcomeUser(currAccount);
-
-    //display balance
-    calcBalance(currAccount);
-
-    //display deposits and withdrawals totals
-    calcDepositsWithdrawals(currAccount);
-
-    //show transactions
-    showTransactions(currAccount);
-  }
-});
-
-//CLICKING ON LOGO
-logoDiv.addEventListener('click', () => {
-  mainWrapper.style.opacity = 0;
-});
-
-
-//LOGGING OUT BUTTON
-btnLogout.addEventListener('click', () => {
-  mainWrapper.style.opacity = 0;
-});
 
 //ACCOUNT DETAILS
 
@@ -96,12 +66,57 @@ const account3 = {
   password: 333,
 };
 
-
 const accounts = [account1, account2, account3];
 
 // =======================================================================================================
 
-//ACCOUNT DETAILS OPERATIONS
+//EVENT LISTENERS
+
+//CLICKING ON LOGO
+logoDiv.addEventListener('click', () => {
+  mainWrapper.style.opacity = 0;
+});
+
+//LOGGING IN
+btnLogin.addEventListener('click', (e) => {
+  e.preventDefault();
+  const userName = loginUsername.value.trim().toLowerCase();
+  const password = loginPassword.value.trim();
+
+  //Locate correct user account
+
+  currAccount = accounts.find((acc) => acc.username === userName);
+
+  if (currAccount.password === +password) {
+    //display UI
+    mainWrapper.style.opacity = 1;
+
+    //display welcome message
+    welcomeUser(currAccount);
+
+    //display balance
+    calcBalance(currAccount);
+
+    //display deposits and withdrawals totals
+    calcDepositsWithdrawals(currAccount);
+
+    //show transactions
+    showTransactions(currAccount);
+  }
+});
+
+//LOGGING OUT
+btnLogout.addEventListener('click', () => {
+  mainWrapper.style.opacity = 0;
+});
+
+//SERVICES: TRANSFERRING MONEY
+
+transferBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  makeTransfer();
+});
 
 //FUNCTIONS
 
@@ -126,28 +141,31 @@ function calcBalance(account) {
 //Calculate deposits and withdrawals
 
 function calcDepositsWithdrawals(account) {
-  const deposits = account.transactions.filter(trans => trans > 0)
-  .reduce((acc, trans) => acc + trans);
+  const deposits = account.transactions
+    .filter((trans) => trans > 0)
+    .reduce((acc, trans) => acc + trans);
 
-  const withdrawals = account.transactions.filter(trans => trans < 0)
-  .reduce((acc, trans) => acc + trans);
+  const withdrawals = account.transactions
+    .filter((trans) => trans < 0)
+    .reduce((acc, trans) => acc + trans);
 
   showDeposits.innerText = `$${deposits}`;
 
   showWithdrawals.innerText = `$${Math.abs(withdrawals)}`;
-
 }
 
 //Display Transactions
 
 function showTransactions(account) {
-
-  accountDetailsBody.innerHTML = "";
+  accountDetailsBody.innerHTML = '';
 
   account.transactions.forEach((trans) => {
     const type = trans > 0 ? 'deposit' : 'withdrawal';
 
-    const transFormatted = trans < 0 ? trans.toString().replaceAll("-", "-$") : "$" + trans.toString();
+    const transFormatted =
+      trans < 0
+        ? trans.toString().replaceAll('-', '-$')
+        : '$' + trans.toString();
 
     const html = `
     <div class="transaction-single">
@@ -159,4 +177,18 @@ function showTransactions(account) {
   });
 }
 
-// showTransactions(account1)
+function makeTransfer() {
+  const transferTo = inputTransferTo.value;
+  const transferAmount = +inputTransferAmount.value;
+
+  //locate transfer recipient user object
+  const transferRecipient = accounts.find(
+    (owner) => owner.username === transferTo
+  );
+  transferRecipient.transactions.push(transferAmount);
+
+  //update UI for current user
+  currAccount.transactions.push(-transferAmount);
+
+  showTransactions(currAccount);
+}

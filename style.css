@@ -51,7 +51,7 @@ button {
 }
 
 .main-wrapper {
-  opacity: 1;
+  opacity: 0;
   height: 80%;
   display: flex;
   justify-content: space-evenly;
@@ -91,13 +91,12 @@ button {
   align-items: center;
 }
 
-
 .deposits-total {
-  color:rgb(114, 230, 96);
+  color: rgb(114, 230, 96);
 }
 
 .withdrawals-total {
-  color:rgb(247, 104, 75);
+  color: rgb(247, 104, 75);
 }
 
 /* Transaction Styling */
@@ -125,7 +124,6 @@ button {
   padding: 5px 15px;
   border-radius: 10px;
 }
-
 
 /* SERVICES */
 
@@ -186,5 +184,14 @@ button {
 
 #btn-login:hover,
 #btn-logout:hover {
+  cursor: pointer;
+}
+
+#transfer-btn {
+  width: 100px;
+  background-color: blue;
+}
+
+#transfer-btn:hover {
   cursor: pointer;
 }
