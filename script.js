@@ -114,8 +114,8 @@ btnLogout.addEventListener('click', () => {
 
 transferBtn.addEventListener('click', (e) => {
   e.preventDefault();
-
   makeTransfer();
+
 });
 
 //FUNCTIONS
@@ -180,6 +180,9 @@ function showTransactions(account) {
 function makeTransfer() {
   const transferTo = inputTransferTo.value;
   const transferAmount = +inputTransferAmount.value;
+
+  inputTransferTo.value = '';
+  inputTransferAmount.value = '';
 
   //locate transfer recipient user object
   const transferRecipient = accounts.find(

@@ -10,7 +10,7 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 2px solid #b1b1b1;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .logo {
@@ -32,13 +32,23 @@
   justify-content: space-evenly;
 }
 
-.login-wrapper input,
-button {
-  height: 40px;
-  padding: 10px;
-  font-size: large;
+.login-wrapper input {
+  padding: 7px;
+  font-size: 1rem;
   border: 2px solid #b1b1b1;
   border-radius: 8px;
+}
+
+.login-wrapper button {
+  padding: 8px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+}
+
+.login-wrapper button:hover {
+  cursor: pointer;
+  /* background-color: hsl(0, 38%, 50%); */
 }
 
 .welcome-message {
@@ -132,7 +142,11 @@ button {
   border-radius: 10px;
   width: 30%;
   padding: 30px;
-  max-height: 500px;
+  height: 550px;
+}
+
+.services-window h2 {
+  margin-bottom: 10px;
 }
 
 .account-details-window h2,
@@ -153,22 +167,55 @@ button {
   justify-content: space-around;
 }
 
-.services {
-  height: 120px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-bottom: 1px dashed #333;
+.services-wrapper h4 {
+  border-bottom: 1px solid #333;
 }
 
-.services:last-child {
-  border: none;
+.services {
+  display: flex;
+  font-size: .9rem;
+}
+
+.services p {
+  margin-bottom: 5px;
 }
 
 .services input {
-  height: 25px;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  justify-content: center;
+}
+
+.form-group:last-child {
+  width: 50%;
+  align-items: flex-end;
+}
+
+.services input {
+  height: 30px;
   border-radius: 8px;
   border: none;
+  padding-left: 10px;
+}
+
+.services-btn {
+  border-radius: 8px;
+  border: none;
+  width: 70%;
+  height: 50%;
+  background-color: #733434;
+  color: #f2edd0;
+  font-size: 0.9rem;
+}
+
+.services-btn:hover {
+  cursor: pointer;
+  background-color: hsl(0, 38%, 42%);
 }
 
 .username,
@@ -180,18 +227,4 @@ button {
 #btn-logout {
   background-color: #733434;
   color: #f2edd0;
-}
-
-#btn-login:hover,
-#btn-logout:hover {
-  cursor: pointer;
-}
-
-#transfer-btn {
-  width: 100px;
-  background-color: blue;
-}
-
-#transfer-btn:hover {
-  cursor: pointer;
 }
