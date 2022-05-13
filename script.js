@@ -215,7 +215,7 @@ function makeTransfer() {
   //update UI for current user
   currAccount.transactions.push(-transferAmount);
 
-  showTransactions(currAccount);
+  updateUI(currAccount);
 }
 
 //SERVICES: REQUEST A LOAN
