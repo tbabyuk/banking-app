@@ -1,8 +1,10 @@
 console.log('hello world!');
 
 const logoDiv = document.querySelector('.logo');
+const loginBtn = document.querySelector("#login-btn");
 const btnLogin = document.querySelector('#btn-login');
 const btnLogout = document.querySelector('#btn-logout');
+const welcomeBox = document.querySelector(".welcome-box");
 const mainWrapper = document.querySelector('.main-wrapper');
 const loginUsername = document.querySelector('.login-username');
 const loginPassword = document.querySelector('.login-password');
@@ -92,16 +94,19 @@ btnLogin.addEventListener('click', (e) => {
 
   currAccount = accounts.find((acc) => acc.username === userName);
 
-  if (currAccount.password === +password) {
+  if(!userName || !password) {
+    welcomeMessage.innerHTML = `<span class="denied small">Please enter correct username and password</span>`;
+  } else if(currAccount.password === +password) {
     //display UI
+    welcomeBox.style.display = "none";
     mainWrapper.style.opacity = 1;
 
     //display welcome message
     welcomeUser(currAccount);
-
+ 
     //display UI
     updateUI(currAccount);
-    
+
   }
 });
 
@@ -109,6 +114,12 @@ btnLogin.addEventListener('click', (e) => {
 btnLogout.addEventListener('click', () => {
   mainWrapper.style.opacity = 0;
 });
+
+//LOGGING IN FROM WELCOME BOX
+
+loginBtn.addEventListener("click", () => {
+  loginUsername.focus();
+})
 
 //SERVICES: TRANSFERRING MONEY
 transferBtn.addEventListener('click', (e) => {
@@ -224,7 +235,11 @@ function makeTransfer() {
 function requestLoan() {
   const loanAmount = +inputLoanAmount.value;
 
-  if (
+  if (!loanAmount) {
+    loanStatus.classList = '';
+    loanStatus.classList.add('denied');
+    loanStatus.value = "ENTER AMOUNT"
+  } else if(
     loanAmount > 0 &&
     currAccount.transactions.some((trans) => trans >= loanAmount * 0.1)
   ) {
@@ -240,3 +255,4 @@ function requestLoan() {
     loanStatus.value = 'DENIED';
   }
 }
+

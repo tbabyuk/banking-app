@@ -48,7 +48,6 @@
 
 .login-wrapper button:hover {
   cursor: pointer;
-  /* background-color: hsl(0, 38%, 50%); */
 }
 
 .welcome-message {
@@ -58,6 +57,48 @@
   align-items: center;
   font-size: 1.5rem;
   font-style: italic;
+}
+
+
+/* Welcome Box */
+
+.welcome-box {
+  display: flex;
+  justify-content: center;
+  height: auto;
+  padding: 0 100px;
+  margin-top: 70px;
+}
+
+.welcome-image {
+  background: url('./img/banking-girl.png') no-repeat center;
+  background-size: 100%;
+  width: 40%;
+  border-radius: 10px;
+}
+
+.welcome-text {
+  padding: 50px;
+  height: 300px;
+  width: 60%;
+}
+
+.welcome-text p {
+  font-size: 1.1rem;
+  margin-top: 25px;
+}
+
+.welcome-text button {
+  background-color: #733434;
+  color: #f2edd0;
+  padding: 5px 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+}
+
+.welcome-text button:hover {
+  cursor: pointer;
 }
 
 .main-wrapper {
@@ -249,4 +290,9 @@
 
 .denied {
   color: rgb(247, 104, 75);
+}
+
+
+.small {
+  font-size: 1rem;
 }
