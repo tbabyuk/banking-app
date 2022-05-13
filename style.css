@@ -87,6 +87,10 @@
   align-items: flex-end;
 }
 
+.balance {
+  font-weight: bold;
+}
+
 .account-details-summary {
   background-color: #f8f8f8;
   display: grid;
@@ -191,6 +195,7 @@
   justify-content: center;
 }
 
+
 .form-group:last-child {
   width: 50%;
   align-items: flex-end;
@@ -223,8 +228,25 @@
   margin-right: 50px;
 }
 
+
+
+#loan-status {
+  background-color: #ece9e9;
+  padding-left: 0;
+}
+
 #btn-login,
 #btn-logout {
   background-color: #733434;
   color: #f2edd0;
+}
+
+
+
+.approved {
+  color: rgb(114, 230, 96);
+}
+
+.denied {
+  color: rgb(247, 104, 75);
 }

@@ -18,6 +18,11 @@ const inputTransferTo = document.getElementById('transfer-to');
 const inputTransferAmount = document.getElementById('transfer-amount');
 const transferBtn = document.getElementById('transfer-btn');
 
+//Loans
+const inputLoanAmount = document.getElementById('loan-amount');
+const loanStatus = document.getElementById('loan-status');
+const loanBtn = document.getElementById('loan-btn');
+
 loginUsername.focus();
 
 //DETERMINE AND DISPLAY CURRENT DATE AND TIME
@@ -94,14 +99,9 @@ btnLogin.addEventListener('click', (e) => {
     //display welcome message
     welcomeUser(currAccount);
 
-    //display balance
-    calcBalance(currAccount);
-
-    //display deposits and withdrawals totals
-    calcDepositsWithdrawals(currAccount);
-
-    //show transactions
-    showTransactions(currAccount);
+    //display UI
+    updateUI(currAccount);
+    
   }
 });
 
@@ -111,14 +111,34 @@ btnLogout.addEventListener('click', () => {
 });
 
 //SERVICES: TRANSFERRING MONEY
-
 transferBtn.addEventListener('click', (e) => {
   e.preventDefault();
   makeTransfer();
-
 });
 
+//SERVICES: REQUESTING A LOAN
+loanBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  requestLoan();
+});
+
+// =======================================================================================================
+
 //FUNCTIONS
+
+//Update Numbers
+
+function updateUI(currAccount) {
+      //display balance
+      calcBalance(currAccount);
+
+      //display deposits and withdrawals totals
+      calcDepositsWithdrawals(currAccount);
+  
+      //show transactions
+      showTransactions(currAccount);
+}
+
 
 //Show welcome message
 function welcomeUser(account) {
@@ -177,6 +197,8 @@ function showTransactions(account) {
   });
 }
 
+
+//SERVICES: TRANSFERRING MONEY
 function makeTransfer() {
   const transferTo = inputTransferTo.value;
   const transferAmount = +inputTransferAmount.value;
@@ -194,4 +216,27 @@ function makeTransfer() {
   currAccount.transactions.push(-transferAmount);
 
   showTransactions(currAccount);
+}
+
+//SERVICES: REQUEST A LOAN
+//Loan condition: approve loan only if at least one of the transactions is equal to 10% or more of the requested loan amount
+
+function requestLoan() {
+  const loanAmount = +inputLoanAmount.value;
+
+  if (
+    loanAmount > 0 &&
+    currAccount.transactions.some((trans) => trans >= loanAmount * 0.1)
+  ) {
+    loanStatus.classList = '';
+    loanStatus.classList.add('approved');
+    loanStatus.value = 'APPROVED';
+    currAccount.transactions.push(loanAmount);
+    //update UI for current user
+    updateUI(currAccount);
+  } else {
+    loanStatus.classList = '';
+    loanStatus.classList.add('denied');
+    loanStatus.value = 'DENIED';
+  }
 }
