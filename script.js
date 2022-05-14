@@ -1,10 +1,9 @@
 console.log('hello world!');
 
-const logoDiv = document.querySelector('.logo');
-const loginBtn = document.querySelector("#login-btn");
+const loginBtn = document.querySelector('#login-btn');
 const btnLogin = document.querySelector('#btn-login');
 const btnLogout = document.querySelector('#btn-logout');
-const welcomeBox = document.querySelector(".welcome-box");
+const welcomeBox = document.querySelector('.welcome-box');
 const mainWrapper = document.querySelector('.main-wrapper');
 const loginUsername = document.querySelector('.login-username');
 const loginPassword = document.querySelector('.login-password');
@@ -42,16 +41,16 @@ let formattedDate = currDate.toLocaleDateString(locale, {
 
 currentDate.innerText = formattedDate;
 
-let currAccount;
-
 //ACCOUNT DETAILS
 
 // =======================================================================================================
 
+let currAccount;
+
 //ALL ACCOUNTS
 const account1 = {
-  owner: 'Hannibal Lecter',
-  username: 'hlecter',
+  owner: 'John Smith',
+  username: 'jsmith',
   transactions: [300, 250, -350, 200, -220, 70],
   interestRate: 1.2,
   password: 111,
@@ -79,11 +78,6 @@ const accounts = [account1, account2, account3];
 
 //EVENT LISTENERS
 
-//CLICKING ON LOGO
-logoDiv.addEventListener('click', () => {
-  mainWrapper.style.opacity = 0;
-});
-
 //LOGGING IN
 btnLogin.addEventListener('click', (e) => {
   e.preventDefault();
@@ -94,19 +88,19 @@ btnLogin.addEventListener('click', (e) => {
 
   currAccount = accounts.find((acc) => acc.username === userName);
 
-  if(!userName || !password) {
+  if (!userName || !password) {
     welcomeMessage.innerHTML = `<span class="denied small">Please enter correct username and password</span>`;
-  } else if(currAccount.password === +password) {
+    loginUsername.focus();
+  } else if (currAccount.password === +password) {
     //display UI
-    welcomeBox.style.display = "none";
+    welcomeBox.style.display = 'none';
     mainWrapper.style.opacity = 1;
 
     //display welcome message
     welcomeUser(currAccount);
- 
+
     //display UI
     updateUI(currAccount);
-
   }
 });
 
@@ -116,10 +110,9 @@ btnLogout.addEventListener('click', () => {
 });
 
 //LOGGING IN FROM WELCOME BOX
-
-loginBtn.addEventListener("click", () => {
+loginBtn.addEventListener('click', () => {
   loginUsername.focus();
-})
+});
 
 //SERVICES: TRANSFERRING MONEY
 transferBtn.addEventListener('click', (e) => {
@@ -133,6 +126,7 @@ loanBtn.addEventListener('click', (e) => {
   requestLoan();
 });
 
+
 // =======================================================================================================
 
 //FUNCTIONS
@@ -140,16 +134,15 @@ loanBtn.addEventListener('click', (e) => {
 //Update Numbers
 
 function updateUI(currAccount) {
-      //display balance
-      calcBalance(currAccount);
+  //display balance
+  calcBalance(currAccount);
 
-      //display deposits and withdrawals totals
-      calcDepositsWithdrawals(currAccount);
-  
-      //show transactions
-      showTransactions(currAccount);
+  //display deposits and withdrawals totals
+  calcDepositsWithdrawals(currAccount);
+
+  //show transactions
+  showTransactions(currAccount);
 }
-
 
 //Show welcome message
 function welcomeUser(account) {
@@ -208,7 +201,6 @@ function showTransactions(account) {
   });
 }
 
-
 //SERVICES: TRANSFERRING MONEY
 function makeTransfer() {
   const transferTo = inputTransferTo.value;
@@ -238,8 +230,8 @@ function requestLoan() {
   if (!loanAmount) {
     loanStatus.classList = '';
     loanStatus.classList.add('denied');
-    loanStatus.value = "ENTER AMOUNT"
-  } else if(
+    loanStatus.value = 'ENTER AMOUNT';
+  } else if (
     loanAmount > 0 &&
     currAccount.transactions.some((trans) => trans >= loanAmount * 0.1)
   ) {
@@ -256,3 +248,12 @@ function requestLoan() {
   }
 }
 
+//DELETE ACCOUNT
+//WORK IN PROGRESS
+
+function closeAccount() {
+  const newAccounts = accounts.filter(
+    (acc) => acc.username !== currAccount.username
+  );
+  console.log(newAccounts);
+}
