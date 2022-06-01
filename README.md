@@ -1,14 +1,14 @@
 # Banking App
 
-See it live: [Banking App](http://tarasb15.sg-host.com/)
+See it live: [Banking App](https://phenomenal-kleicha-8b80f2.netlify.app)
 
 ## Test Accounts
 Please use the following login credentials to be able for testing/demo purposes
-1. Username: jsmith
+1. Username: jsmith  
    Password: 111
-2. Username: lorgana
+2. Username: lorgana  
    Password: 222
-3. Username: gorwell
+3. Username: gorwell  
    Password: 333
 
 
