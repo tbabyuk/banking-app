@@ -60,7 +60,6 @@
 
 
 /* Welcome Box */
-
 .welcome-box {
   display: flex;
   justify-content: center;
@@ -154,7 +153,6 @@
 }
 
 /* Transaction Styling */
-
 .transaction-single {
   background-color: #f8f8f8;
   display: flex;
@@ -180,7 +178,6 @@
 }
 
 /* SERVICES */
-
 .services-window {
   background-color: #ece9e9;
   border-radius: 10px;
@@ -196,8 +193,6 @@
 .account-details-window h2,
 .services-window h2 {
   color: #333;
-  /* border-bottom: 2px solid #333; */
-  /* margin-bottom: 50px; */
 }
 
 .current-date {
@@ -235,7 +230,6 @@
   justify-content: center;
 }
 
-
 .form-group:last-child {
   width: 50%;
   align-items: flex-end;
@@ -268,8 +262,6 @@
   margin-right: 50px;
 }
 
-
-
 #loan-status {
   background-color: #ece9e9;
   padding-left: 0;
@@ -281,8 +273,6 @@
   color: #f2edd0;
 }
 
-
-
 .approved {
   color: rgb(114, 230, 96);
 }
@@ -290,7 +280,6 @@
 .denied {
   color: rgb(247, 104, 75);
 }
-
 
 .small {
   font-size: 1rem;
