@@ -1,7 +1,8 @@
 console.log('hello world!');
 
-const loginBtn = document.querySelector('#login-btn');
-const btnLogin = document.querySelector('#btn-login');
+//Select DOM Elements
+const btnLogin1 = document.querySelector('#btn-login-1');
+const btnLogin2 = document.querySelector('#btn-login-2');
 const btnLogout = document.querySelector('#btn-logout');
 const welcomeBox = document.querySelector('.welcome-box');
 const mainWrapper = document.querySelector('.main-wrapper');
@@ -25,6 +26,7 @@ const loanStatus = document.getElementById('loan-status');
 const loanBtn = document.getElementById('loan-btn');
 
 loginUsername.focus();
+
 
 //DETERMINE AND DISPLAY CURRENT DATE AND TIME
 let currDate = new Date();
@@ -79,13 +81,13 @@ const accounts = [account1, account2, account3];
 //EVENT LISTENERS
 
 //LOGGING IN
-btnLogin.addEventListener('click', (e) => {
+btnLogin1.addEventListener('click', (e) => {
   e.preventDefault();
   const userName = loginUsername.value.trim().toLowerCase();
   const password = loginPassword.value.trim();
 
+  
   //Locate correct user account
-
   currAccount = accounts.find((acc) => acc.username === userName);
 
   if (!userName || !password) {
@@ -110,7 +112,7 @@ btnLogout.addEventListener('click', () => {
 });
 
 //LOGGING IN FROM WELCOME BOX
-loginBtn.addEventListener('click', () => {
+btnLogin2.addEventListener('click', () => {
   loginUsername.focus();
 });
 
